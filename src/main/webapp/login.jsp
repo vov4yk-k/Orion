@@ -33,9 +33,9 @@
             <div class="masthead clearfix">
                 <div class="inner">
 
-                    <img src="/resources/img/cropped-NAV-LOGOstd.png" alt="Mountain View" style="width:134px;height:41px;" class="masthead-brand">
+                    <img src="resources/img/cropped-NAV-LOGOstd.png" alt="Mountain View" style="width:134px;height:41px;" class="masthead-brand">
                     <nav class="nav nav-masthead">
-                        <a class="nav-link active" href="https://v4-alpha.getbootstrap.com/examples/cover/#">Home</a>
+                        <a class="nav-link active" href="#">Home</a>
                         <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/cover/#">Features</a>
                         <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/cover/#">Contact</a>
                     </nav>
@@ -46,18 +46,19 @@
 
                 <div class="container">
 
-                    <form class="form-signin">
+                    <form class="form-signin" name='f' method='POST'
+                          action='/j_spring_security_check'>
                         <h2 class="form-signin-heading">Please sign in</h2>
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name='j_username' required="" autofocus="">
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name='j_password' required="">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" value="remember-me"> Remember me
                             </label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
                     </form>
 
                 </div>
