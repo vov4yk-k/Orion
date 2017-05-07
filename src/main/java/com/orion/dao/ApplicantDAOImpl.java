@@ -14,6 +14,10 @@ public class ApplicantDAOImpl implements ApplicantDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     public void addApplicant(Applicant applicant) {
         sessionFactory.getCurrentSession().save(applicant);
     }

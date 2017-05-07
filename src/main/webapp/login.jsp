@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vova
@@ -45,20 +47,26 @@
             <div class="inner cover">
 
                 <div class="container">
-
-                    <form class="form-signin" name='f' method='POST'
-                          action='/j_spring_security_check'>
-                        <h2 class="form-signin-heading">Please sign in</h2>
+                    <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+                        <font color="red">
+                            Your login attempt was not successful due to <br/><br/>
+                            <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                        </font>
+                    </c:if>
+                    <spring:url var="authUrl" value="/j_spring_security_check" />
+                    <form class="form-signin" name='frm' method='POST' action="${authUrl}?${_csrf.parameterName}=${_csrf.token}">
+                        <h2 class="form-signin-heading" >Please sign in</h2>
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name='j_username' required="" autofocus="">
+                        <input type="text" id="inputEmail" class="form-control" placeholder="Email address" name='username' required="" autofocus="">
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name='j_password' required="">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name='password' required="">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="remember-me"> Remember me
+                                <input type="checkbox" value="remember-me" name="_spring_security_remember_me"> Remember me
                             </label>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
+                        <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
                     </form>
 
                 </div>
@@ -68,7 +76,6 @@
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
                 </div>
             </div>
 
