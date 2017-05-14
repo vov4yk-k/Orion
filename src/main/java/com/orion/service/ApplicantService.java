@@ -13,4 +13,6 @@ public interface ApplicantService {
     public void removeApplicant(Integer id);
 
     public List<Applicant> listApplicant();
+
+    public Applicant getApplicantById(Integer id);
 }

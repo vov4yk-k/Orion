@@ -28,4 +28,9 @@ public class ApplicantServiceImpl implements ApplicantService {
     public List<Applicant> listApplicant() {
         return applicantDAO.listApplicant();
     }
+
+    @Override
+    public Applicant getApplicantById(Integer id) {
+        return applicantDAO.getApplicantById(id);
+    }
 }

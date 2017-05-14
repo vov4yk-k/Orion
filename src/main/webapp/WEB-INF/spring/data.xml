@@ -12,10 +12,9 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
-    <!-- Менеджер транзакций -->
+    <!-- transaction manager -->
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
@@ -27,12 +26,12 @@
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-    <!-- Настройки бина dataSource будем хранить в отдельном файле -->
+    <!--bean dataSource options from file -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
           p:location="/WEB-INF/jdbc.properties" />
 
-    <!-- Непосредственно бин dataSource -->
+    <!-- bean dataSource -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="${jdbc.driverClassName}"
@@ -40,7 +39,7 @@
           p:username="${jdbc.username}"
           p:password="${jdbc.password}" />
 
-    <!-- Настройки фабрики сессий Хибернейта -->
+    <!-- hibernante session factory conf -->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />

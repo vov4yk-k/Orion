@@ -24,7 +24,7 @@ public class ApplicantController {
 
         map.put("applicant", new Applicant());
         map.put("applicantList", applicantService.listApplicant());
-
+        
         return "applicant";
     }
 

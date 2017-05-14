@@ -4,29 +4,38 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!-- Описание корневого контейнера, разделяемого всеми сервлетами и фильтрами -->
+    <!-- root container -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring/root-context.xml
         </param-value>
     </context-param>
+
+    <!--  Filter for encoding page -->
     <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-    <!-- Создаёт контейнер Spring, разделяемый всеми сервлетами и фильтрами -->
+    <!--Spring container -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!-- Базовый сервлет, обрабатывает все запросы к приложению -->
+    <!-- main servlet -->
     <servlet>
         <servlet-name>appServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -42,23 +51,23 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- Фильтр для перекодировки в utf8 -->
-    <servlet-mapping>
-        <servlet-name>appServlet</servlet-name>
-        <url-pattern>*.html</url-pattern>
-    </servlet-mapping>
+    <!--spring security-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
 
     <!-- page on load-->
-    <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
-    </welcome-file-list>
-    <!-- error page -->
-    <error-page>
-        <error-code>403</error-code>
-        <location>/WEB-INF/views/applicant2.jsp</location>
-    </error-page>
+    <!--<welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>-->
+
 
 
 </web-app>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,8 +24,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
     }
 
     public void removeApplicant(Integer id) {
-        Applicant applicant = (Applicant) sessionFactory.getCurrentSession().load(
-                Applicant.class, id);
+        Applicant applicant = getApplicantById(id);
         if (null != applicant) {
             sessionFactory.getCurrentSession().delete(applicant);
         }
@@ -34,5 +34,12 @@ public class ApplicantDAOImpl implements ApplicantDAO {
     public List<Applicant> listApplicant() {
         return sessionFactory.getCurrentSession().createQuery("from Applicant")
                 .list();
+    }
+
+    @Override
+    public Applicant getApplicantById(Integer id) {
+        Applicant applicant = (Applicant) sessionFactory.getCurrentSession().load(
+                Applicant.class, id);
+        return applicant;
     }
 }

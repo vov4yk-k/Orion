@@ -15,4 +15,6 @@ public interface ApplicantDAO {
 
     public List<Applicant> listApplicant();
 
+    public Applicant getApplicantById(Integer id);
+
 }

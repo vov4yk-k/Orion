@@ -57,6 +57,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
+  `id`        INT PRIMARY KEY AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
