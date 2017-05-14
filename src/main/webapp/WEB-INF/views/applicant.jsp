@@ -22,7 +22,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://orionwork.eu/wp-content/uploads/2016/08/cropped-favicon-32x32.png">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Orion</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
