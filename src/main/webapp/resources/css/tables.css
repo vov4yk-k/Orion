@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 
 div.table-title {
-    display: block;
+    display: table-header-group;
     margin: auto;
     max-width: 600px;
     padding: 5px;
@@ -19,7 +19,7 @@ div.table-title {
 }
 
 /*** Table Styles **/
-.table-fill {
+/*.table-fill {
     background: white;
     border-radius: 3px;
     border-collapse: collapse;
@@ -30,7 +30,7 @@ div.table-title {
     width: 100%;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     animation: float 5s infinite;
-}
+}*/
 
 th {
     color: #D5DDE5;;
@@ -40,7 +40,8 @@ th {
     border-right: 1px solid #343a45;
     font-size: 16px;
     font-weight: 100;
-    padding: 14px;
+    /*padding: 14px;*/
+    padding-bottom: 4px;
     text-align: left;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     vertical-align: middle;
@@ -101,7 +102,7 @@ td {
     padding: 10px;
     text-align: left;
     vertical-align: middle;
-    font-weight: normal;;
+    font-weight: normal;
     font-size: 10px;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #C1C3D1;
@@ -140,19 +141,38 @@ td.text-right {
     table-layout: fixed;
     width: 100%;
 }
+
 .table-area {
     position: relative;
     z-index: 1000;
+}*/
+
+
+table.table-fill thead, tbody {
+    //width: 100%;
+    /*position: fixed;*/
+    top: 70px;
+    //table-layout: fixed;
+    /*display: table;*/
+    display: table-header-group;
+}
+#mainTable_filter{
+    display: none;
 }
 
 
-table.table-fill thead {
-    width: 100%;
-    position: fixed;
-    top: 70px;
-    table-layout: fixed;
-    display: table;
-}*/
-#mainTable_filter{
-    display: none;
+
+#applicantsTable_wrapper{
+    margin-top: 4px;
+    /*width: 98% !important;*/
+}
+
+#main{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 16.7%;
+}
+
+::-webkit-scrollbar {
+    width: 0;
 }

@@ -8,8 +8,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class ApplicantDAOImpl implements ApplicantDAO {
 
     @Autowired
@@ -38,8 +40,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 
     @Override
     public Applicant getApplicantById(Integer id) {
-        Applicant applicant = (Applicant) sessionFactory.getCurrentSession().load(
-                Applicant.class, id);
+        Applicant applicant = (Applicant) sessionFactory.getCurrentSession().get(Applicant.class, id);
         return applicant;
     }
 }
