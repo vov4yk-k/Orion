@@ -4,8 +4,15 @@
 $(document).ready(function() {
     var table = initApplicantsTable();
 
+    setInterval(
+        function(){
+            table.ajax.reload();
+        },
+        300000
+    );
+
     $('#text-to-find').on( 'keyup', function () {
-        table.search(this.value ).draw();});
+        table.search(this.value).draw();});
 
     $("#applicantsTable_filter").hide();
 
@@ -19,6 +26,7 @@ $(document).ready(function() {
             .find("input[type=checkbox], input[type=radio]")
             .prop("checked", "")
             .end();
+        table.ajax.reload();
     });
 } );
 
@@ -41,7 +49,7 @@ function initApplicantsTable() {
             { "data": "recruiter"}
         ],
         "order": [[ 0, "desc" ]],
-        "bFilter": false,
+        //"bFilter": false,
         "bInfo": false,
         "dom": '<"top"i>rt<"bottom"flp><"clear">',
         "scrollY":        '80vh',
@@ -77,17 +85,8 @@ function showApplicantDialog() {
 function deleteApplicant() {
     $.ajax({
         dataType: 'json',
-        url: '/delete/'+$('#applicantID').val()
+        url: '/delete/'+$('#id').val()
     });
     $('#applicantModalWindow').modal('hide');
-    updateApplicantsTable();
 }
 
-function updateApplicantsTable() {
-    var table = $('#applicantsTable').DataTable();
-    table.ajax.reload(null, false );
-}
-
-function clearApplicantDialog() {
-
-}

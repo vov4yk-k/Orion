@@ -80,9 +80,9 @@
                 <form:form method="post" action="add" commandName="applicant">
                 <div class="modal-body">
                     <fieldset class="form-group" style="visibility: hidden; height: 0px">
-                        <label for="applicantID">
+                        <label for="id">
                         </label>
-                        <input type="text" class="form-control" id="applicantID" name="id">
+                        <input type="text" class="form-control" id="id" name="id">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="name">
