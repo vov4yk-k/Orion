@@ -79,17 +79,22 @@
                 </div>
                 <form:form method="post" action="add" commandName="applicant">
                 <div class="modal-body">
-                    <fieldset class="form-group">
-                        <label for="namecirilic">
-                            <spring:message code="label.namecirilic"/>
+                    <fieldset class="form-group" style="visibility: hidden; height: 0px">
+                        <label for="applicantID">
                         </label>
-                        <input type="text" class="form-control" id="namecirilic" name="name">
+                        <input type="text" class="form-control" id="applicantID" name="id">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="namelatin">
+                        <label for="name">
+                            <spring:message code="label.namecirilic"/>
+                        </label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="nameTranslit">
                             <spring:message code="label.namelatin"/>
                         </label>
-                        <input type="text" class="form-control" id="namelatin" name="nameTranslit">
+                        <input type="text" class="form-control" id="nameTranslit" name="nameTranslit">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="vacancy">
@@ -110,20 +115,20 @@
                         <input type="text" class="form-control" id="recruiter" name="recruiter">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="commentary">
+                        <label for="comment">
                             <spring:message code="label.commentary"/>
                         </label>
-                        <textarea class="form-control" id="commentary" name="comment"></textarea>
+                        <textarea class="form-control" id="comment" name="comment"></textarea>
                     </fieldset>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" name="invitationRecieved">
+                            <input type="checkbox" class="form-check-input" id="invitationRecieved" name="invitationRecieved">
                             <spring:message code="label.invitationrecieved"/>
                         </label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger"><spring:message code="label.delete"/></button>
+                    <button type="button" class="btn btn-danger" onclick="deleteApplicant(this)"><spring:message code="label.delete"/></button>
                     <button type="submit" class="btn btn-primary"><spring:message code="label.save"/></button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:message
                             code="label.close"/></button>
