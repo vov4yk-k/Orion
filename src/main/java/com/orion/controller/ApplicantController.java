@@ -1,9 +1,12 @@
 package com.orion.controller;
 
 
+import com.orion.model.User;
 import com.orion.service.ApplicantService;
 import com.orion.model.Applicant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +23,13 @@ public class ApplicantController {
     @RequestMapping("/index")
     public String listApplicant(Map<String, Object> map) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
         map.put("applicant", new Applicant());
         map.put("applicantList", applicantService.listApplicant());
-        
+        map.put("userName", currentPrincipalName);
+
         return "applicant";
     }
 

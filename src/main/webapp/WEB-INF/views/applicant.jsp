@@ -40,22 +40,22 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="https://v4-alpha.getbootstrap.com/examples/dashboard/#">Dashboard</a>
+    <a class="navbar-brand" href="#">${userName}</a>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/#">Home <span
+                <a class="nav-link" href="#">Home <span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/#">Settings</a>
+                <a class="nav-link" href="#">Settings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/#">Profile</a>
+                <a class="nav-link" href="#">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/#">Help</a>
+                <a class="nav-link" href="#">Help</a>
             </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -122,7 +122,7 @@
                     </fieldset>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" id="invitationRecieved" name="invitationRecieved">
+                            <input type="checkbox" class="form-check-input" id="invitationRecieved" name="invitationrecieved">
                             <spring:message code="label.invitationrecieved"/>
                         </label>
                     </div>
