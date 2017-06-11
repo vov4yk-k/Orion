@@ -84,6 +84,16 @@
                         </label>
                         <input type="text" class="form-control" id="id" name="id">
                     </fieldset>
+                    <fieldset class="form-group" style="visibility: hidden; height: 0px">
+                        <label for="registrationDate">
+                        </label>
+                        <input type="date" class="form-control" id="registrationDate" name="registrationDate">
+                    </fieldset>
+                    <fieldset class="form-group" style="visibility: hidden; height: 0px">
+                        <label for="dateOfReceivingInvitation">
+                        </label>
+                        <input type="date" class="dateOfReceivingInvitation" id="dateOfReceivingInvitation" name="id">
+                    </fieldset>
                     <fieldset class="form-group">
                         <label for="name">
                             <spring:message code="label.namecirilic"/>

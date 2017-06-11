@@ -67,7 +67,13 @@ function showApplicantOnClick(table) {
             url: '/findApplicant/'+data.id,
             success: function(jsondata){
                 for (var property in jsondata) {
-                    $('#'+property).val(jsondata[property]);
+                    var field = $('#'+property);
+                    var fieldData = jsondata[property];
+                    if(field.attr('type') == "date"){
+                        field.val(Date.parse(fieldData));
+                    }else{
+                        field.val(fieldData);
+                    }
                 }
                 $('#invitationRecieved').prop('checked',jsondata.invitationRecieved);
                 showApplicantDialog();

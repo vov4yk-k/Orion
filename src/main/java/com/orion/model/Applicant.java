@@ -1,5 +1,7 @@
 package com.orion.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class Applicant {
     @Column(name = "NAMELATIN")
     private String nameTranslit;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:00", timezone="CET")
     @Column(name = "REGISTRATIONDATE")
     private Date registrationDate;
 
@@ -31,6 +34,7 @@ public class Applicant {
     @Column(name = "INVITATIONRECIEVED")
     private boolean invitationRecieved;
 
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:00", timezone="CET")
     @Column(name = "DATEOFRECEIVINGINVITATION")
     private Date dateOfReceivingInvitation;
 
