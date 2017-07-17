@@ -35,11 +35,11 @@
             <div class="masthead clearfix">
                 <div class="inner">
 
-                    <img src="resources/img/cropped-NAV-LOGOstd.png" alt="Mountain View" style="width:134px;height:41px;" class="masthead-brand">
+                    <img src="resources/img/cropped-NAV-LOGOstd.png" alt="Mountain View" style="width:134px;height:41px;margin-left:5%" class="masthead-brand">
                     <nav class="nav nav-masthead">
                         <a class="nav-link active" href="#">Home</a>
-                        <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/cover/#">Features</a>
-                        <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/cover/#">Contact</a>
+                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Contact</a>
                     </nav>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                                 <input type="checkbox" value="remember-me" name="_spring_security_remember_me"> Remember me
                             </label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
+                        <button value="Sign in" id="btnSubmit" class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
                         <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
                     </form>
 
@@ -89,7 +89,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/resources/js/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script><script src="file:///C:/Users/Vova/Desktop/assets/js/vendor/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/resources/js/jquery.min.js"><\/script>')</script><script src="/resources/js/jquery.min.js"></script>
 <script src="/resources/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

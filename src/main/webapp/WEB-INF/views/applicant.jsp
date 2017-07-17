@@ -12,7 +12,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <fmt:requestEncoding value="utf-8"/>
-<html lang="ua">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -79,21 +79,6 @@
                 </div>
                 <form:form method="post" action="add" commandName="applicant">
                 <div class="modal-body">
-                    <fieldset class="form-group" style="visibility: hidden; height: 0px">
-                        <label for="id">
-                        </label>
-                        <input type="text" class="form-control" id="id" name="id">
-                    </fieldset>
-                    <fieldset class="form-group" style="visibility: hidden; height: 0px">
-                        <label for="registrationDate">
-                        </label>
-                        <input type="date" class="form-control" id="registrationDate" name="registrationDate">
-                    </fieldset>
-                    <fieldset class="form-group" style="visibility: hidden; height: 0px">
-                        <label for="dateOfReceivingInvitation">
-                        </label>
-                        <input type="date" class="dateOfReceivingInvitation" id="dateOfReceivingInvitation" name="id">
-                    </fieldset>
                     <fieldset class="form-group">
                         <label for="name">
                             <spring:message code="label.namecirilic"/>
@@ -131,11 +116,14 @@
                         <textarea class="form-control" id="comment" name="comment"></textarea>
                     </fieldset>
                     <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" id="invitationRecieved" name="invitationrecieved">
+                        <label for="invitationRecieved" class="form-check-label">
+                            <input type="checkbox" class="form-check-input" id="invitationRecieved" name="invitationRecieved">
                             <spring:message code="label.invitationrecieved"/>
                         </label>
                     </div>
+                    <input type="text" id="id" name="id" style="visibility: hidden; height: 0px">
+                    <input type="text" id="registrationDate" name="registrationDate" style="visibility: hidden; height: 0px">
+                    <input type="text" id="dateOfReceivingInvitation" name="dateOfReceivingInvitation" style="visibility: hidden; height: 0px">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" onclick="deleteApplicant(this)"><spring:message code="label.delete"/></button>

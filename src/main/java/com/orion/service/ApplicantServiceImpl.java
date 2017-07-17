@@ -18,12 +18,17 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Transactional
     public void addApplicant(Applicant applicant) {
         Integer id = applicant.getId();
+
         if(!applicantExist(id)){
             applicant.setRegistrationDate(new Date());
-        }else if(applicant.isInvitationRecieved() && !isInvitationRecieved(id)){
+            applicantDAO.addApplicant(applicant);
+            return;
+        }
+
+        if(applicant.getInvitationRecieved() && !isInvitationRecieved(id)){
             applicant.setDateOfReceivingInvitation(new Date());
         }
-        applicantDAO.addApplicant(applicant);
+        applicantDAO.updateApplicant(applicant);
     }
 
     @Transactional
@@ -43,7 +48,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     public boolean isInvitationRecieved(Integer id){
-        return getApplicantById(id).isInvitationRecieved();
+        return getApplicantById(id).getInvitationRecieved();
     }
 
     public boolean applicantExist(Integer id){

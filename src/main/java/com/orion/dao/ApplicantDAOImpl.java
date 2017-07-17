@@ -23,6 +23,10 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 
     public void addApplicant(Applicant applicant) {
         //sessionFactory.getCurrentSession().saveOrUpdate(applicant);
+        sessionFactory.getCurrentSession().persist(applicant);
+    }
+
+    public void updateApplicant(Applicant applicant) {
         sessionFactory.getCurrentSession().merge(applicant);
     }
 

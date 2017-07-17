@@ -11,6 +11,8 @@ public interface ApplicantDAO {
 
     public void addApplicant(Applicant applicant);
 
+    public void updateApplicant(Applicant applicant);
+
     public void removeApplicant(Integer id);
 
     public List<Applicant> listApplicant();

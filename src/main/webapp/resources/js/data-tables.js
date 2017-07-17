@@ -28,6 +28,11 @@ $(document).ready(function() {
             .end();
         table.ajax.reload();
     });
+
+    $('#invitationRecieved').click(function() {
+        this.value = this.checked;
+    });
+
 } );
 
 function initApplicantsTable() {
@@ -37,16 +42,35 @@ function initApplicantsTable() {
             "dataSrc": ""
         },
         "columns": [
-            { "data": "id"},
-            { "data": "name"},
-            { "data": "nameTranslit"},
-            { "data": "registrationDate"},
-            { "data": "vacancy"},
-            { "data": "invitationRecieved"},
-            { "data": "dateOfReceivingInvitation"},
-            { "data": "comment"},
-            { "data": "contact"},
-            { "data": "recruiter"}
+            { "data": "id",
+                className: "dt-body-center",
+                "width": "2%"
+            },
+            { "data": "name","width": "20%"},
+            { "data": "nameTranslit","width": "20%"},
+            { "data": "registrationDate",
+                className: "dt-body-center",
+                "width": "5%"
+            },
+            { "data": "vacancy", "width": "15%"},
+            {
+                "data": "invitationRecieved",
+                render: function (data, type, row) {
+                    if (type === 'display') {
+                        return '<input type="checkbox" class="editor-active" onclick="return false">';
+                    }
+                    return data;
+                },
+                className: "dt-body-center",
+                "width": "3%"
+            },
+            { "data": "dateOfReceivingInvitation",
+                className: "dt-body-center",
+                "width": "5%"
+            },
+            { "data": "comment","width": "15%"},
+            { "data": "contact","width": "8%"},
+            { "data": "recruiter","width": "7%"}
         ],
         "order": [[ 0, "desc" ]],
         //"bFilter": false,
@@ -55,7 +79,11 @@ function initApplicantsTable() {
         "scrollY":        '80vh',
         "scrollX":        false,
         "responsive":     true,
-        "paging":         false
+        "paging":         false,
+        rowCallback: function ( row, data ) {
+            $('input.editor-active', row).prop('checked', data.invitationRecieved);
+            //$('input.editor-active', row).prop('disabled', data.invitationRecieved);
+        }
     } );
 }
 
@@ -69,13 +97,10 @@ function showApplicantOnClick(table) {
                 for (var property in jsondata) {
                     var field = $('#'+property);
                     var fieldData = jsondata[property];
-                    if(field.attr('type') == "date"){
-                        field.val(Date.parse(fieldData));
-                    }else{
-                        field.val(fieldData);
-                    }
+                    field.val(fieldData);
                 }
                 $('#invitationRecieved').prop('checked',jsondata.invitationRecieved);
+                //$('#invitationRecieved').prop('disabled', jsondata.invitationRecieved);
                 showApplicantDialog();
             }
         });

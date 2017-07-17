@@ -1,12 +1,14 @@
 package com.orion.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -24,17 +26,18 @@ public class Applicant {
     @Column(name = "NAMELATIN")
     private String nameTranslit;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:00", timezone="CET")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="CET")
     @Column(name = "REGISTRATIONDATE")
     private Date registrationDate;
 
     @Column(name = "VACANCY")
     private String vacancy;
 
+    @JsonProperty
     @Column(name = "INVITATIONRECIEVED")
     private boolean invitationRecieved;
 
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:00", timezone="CET")
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="CET")
     @Column(name = "DATEOFRECEIVINGINVITATION")
     private Date dateOfReceivingInvitation;
 
@@ -67,7 +70,7 @@ public class Applicant {
         return vacancy;
     }
 
-    public boolean isInvitationRecieved() {
+    public boolean getInvitationRecieved() {
         return invitationRecieved;
     }
 
@@ -126,4 +129,5 @@ public class Applicant {
     public void setRecruiter(String recruiter) {
         this.recruiter = recruiter;
     }
+
 }

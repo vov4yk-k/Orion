@@ -30,11 +30,8 @@ body {
   background-color: cornsilk;
 }
 body {
-  /*color: #fff;
-  <img class="fit" src="http://orionwork.eu/wp-content/uploads/2016/08/how-we-workret.jpg">
-  background: url(http://orionwork.eu/wp-content/uploads/2016/08/how-we-workret.jpg) 100% 100% no-repeat;*/ /* Добавляем фон */
   background: url(/resources/img/bg-8-full.jpg) 100% 100% no-repeat;
-  background-size: cover; /* Масштабируем фон */
+  background-size: cover;
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
 }
@@ -59,7 +56,7 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 2rem;
+  padding: 3rem;
 }
 
 
@@ -120,7 +117,7 @@ body {
 }
 
 .form-signin-heading{
-	color: #696969;
+	color: #fff;
 }
 
 /*
@@ -162,6 +159,17 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 42rem;
+    width: 72rem;
   }
+}
+
+#inputEmail, #inputPassword, #btnSubmit{
+  text-align: center;
+  width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#inputPassword{
+  margin-bottom: 3px;
 }
