@@ -45,14 +45,14 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span
+                <a class="nav-link" href="/home">Home <span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="/settings">Settings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Help</a>
@@ -142,6 +142,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="modal" href="#applicantModalWindow">New item <span
                             class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <label for="invitationRecieved" class="form-check-label">
+                        <input type="checkbox" class="form-check-input" id="invitationRecievedFilter" name="invitationRecieved">
+                        <spring:message code="label.invitationrecieved"/>
+                    </label>
+
                 </li>
             </ul>
 

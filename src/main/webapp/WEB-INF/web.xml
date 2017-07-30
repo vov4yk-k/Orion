@@ -61,13 +61,4 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-
-    <!-- page on load-->
-    <!--<welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>-->
-
-
-
 </web-app>

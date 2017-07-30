@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "username")
     private String name;
 
     @Column(name = "password")

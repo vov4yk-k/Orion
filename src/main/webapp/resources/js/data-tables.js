@@ -2,6 +2,7 @@
  * Created by Vova on 02.06.2017.
  */
 $(document).ready(function() {
+    
     var table = initApplicantsTable();
 
     setInterval(
@@ -12,6 +13,7 @@ $(document).ready(function() {
     );
 
     $('#text-to-find').on( 'keyup', function () {
+        table.ajax.reload();
         table.search(this.value).draw();});
 
     $("#applicantsTable_filter").hide();
@@ -82,7 +84,6 @@ function initApplicantsTable() {
         "paging":         false,
         rowCallback: function ( row, data ) {
             $('input.editor-active', row).prop('checked', data.invitationRecieved);
-            //$('input.editor-active', row).prop('disabled', data.invitationRecieved);
         }
     } );
 }
