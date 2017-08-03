@@ -1,5 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8" language="java" %>
 <div class="container-fluid">
 
     <!-- The modal -->
@@ -37,13 +39,21 @@
                             <label for="contact">
                                 <spring:message code="label.contact"/>
                             </label>
-                            <input type="text" class="form-control" id="contact" name="contact">
+                            <input type="text" class="form-control" id="contact" name="contact" >
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="recruiter">
                                 <spring:message code="label.recruiter"/>
                             </label>
-                            <input type="text" class="form-control" id="recruiter" name="recruiter">
+                            <input type="text" class="form-control" id="recruiter" name="recruiter" style="display: none">
+                            <div class="jq-selectbox jqselect" style="z-index: 10; width: 100%">
+                                <select id="select-recruiter" style="z-index: 10; width: 100%" onchange="setRecruiter(this)">
+                                    <option><spring:message code="label.select"/></option>
+                                    <c:forEach items="${recruiters}" var="recruiter">
+                                        <option>${recruiter.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="comment">
@@ -57,9 +67,9 @@
                                 <spring:message code="label.invitationrecieved"/>
                             </label>
                         </div>
-                        <input type="text" id="id" name="id" style="visibility: hidden; height: 0px;font-size: 0;">
-                        <input type="text" id="registrationDate" name="registrationDate" style="visibility: hidden; height: 0px;font-size: 0;">
-                        <input type="text" id="dateOfReceivingInvitation" name="dateOfReceivingInvitation" style="visibility: hidden; height: 0px;font-size: 0;">
+                        <input type="text" id="id" name="id" style="display: none">
+                        <input type="text" id="registrationDate" name="registrationDate" style="display: none">
+                        <input type="text" id="dateOfReceivingInvitation" name="dateOfReceivingInvitation" style="display: none">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" onclick="deleteApplicant(this)"><spring:message code="label.delete"/></button>

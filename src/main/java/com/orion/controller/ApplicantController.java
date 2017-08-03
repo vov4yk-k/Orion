@@ -3,6 +3,7 @@ package com.orion.controller;
 
 import com.orion.service.ApplicantService;
 import com.orion.model.Applicant;
+import com.orion.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -20,12 +21,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.TimeZone;
 
 @Controller
 public class ApplicantController {
 
     @Autowired
     private ApplicantService applicantService;
+    @Autowired
+    private UserManagementService userManagementService;
 
     @RequestMapping("/index")
     public String listApplicant(Map<String, Object> map) {
@@ -35,6 +39,7 @@ public class ApplicantController {
         map.put("applicant", new Applicant());
         map.put("applicantList", applicantService.listApplicant());
         map.put("userName", currentPrincipalName);
+        map.put("recruiters", userManagementService.userList());
 
         return "home";
     }
@@ -50,7 +55,7 @@ public class ApplicantController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/index";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -69,20 +74,10 @@ public class ApplicantController {
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("EEST"));
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-    /*@RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String homeTile(ModelMap model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-
-        model.put("applicant", new Applicant());
-        model.put("applicantList", applicantService.listApplicant());
-        model.put("userName", currentPrincipalName);
-
-        return "home";
-    }*/
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String settingsTile(ModelMap model) {

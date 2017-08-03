@@ -26,7 +26,7 @@ public class Applicant {
     @Column(name = "NAMELATIN")
     private String nameTranslit;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="CET")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EEST")
     @Column(name = "REGISTRATIONDATE")
     private Date registrationDate;
 
@@ -37,7 +37,7 @@ public class Applicant {
     @Column(name = "INVITATIONRECIEVED")
     private boolean invitationRecieved;
 
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="CET")
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EEST")
     @Column(name = "DATEOFRECEIVINGINVITATION")
     private Date dateOfReceivingInvitation;
 

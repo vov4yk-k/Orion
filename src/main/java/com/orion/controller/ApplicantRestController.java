@@ -5,9 +5,14 @@ import com.orion.model.User;
 import com.orion.service.ApplicantService;
 import com.orion.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by Vova on 02.06.2017.
@@ -34,8 +39,14 @@ public class ApplicantRestController {
         return applicantService.listApplicant();
     }
 
-    @RequestMapping(path="/users", method = RequestMethod.GET)
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("EEST"));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
+    /*@RequestMapping(path="/users", method = RequestMethod.GET)
     public List<User> getAllUsers(){
         return userManagementService.userList();
-    }
+    }*/
 }

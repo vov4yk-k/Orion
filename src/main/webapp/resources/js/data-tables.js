@@ -35,6 +35,11 @@ $(document).ready(function() {
         this.value = this.checked;
     });
 
+    (function($) {
+        $(function() {
+            $('select').styler();
+        });
+    })(jQuery);
 } );
 
 function initApplicantsTable() {
@@ -101,7 +106,7 @@ function showApplicantOnClick(table) {
                     field.val(fieldData);
                 }
                 $('#invitationRecieved').prop('checked',jsondata.invitationRecieved);
-                //$('#invitationRecieved').prop('disabled', jsondata.invitationRecieved);
+                $('.jq-selectbox__select-text')[0].innerHTML = jsondata.recruiter;
                 showApplicantDialog();
             }
         });
@@ -122,3 +127,6 @@ function deleteApplicant() {
     $('#applicantModalWindow').modal('hide');
 }
 
+function setRecruiter(recr){
+    $('#recruiter').val(recr.value);
+}

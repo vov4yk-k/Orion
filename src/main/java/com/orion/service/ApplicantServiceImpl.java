@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Service
 public class ApplicantServiceImpl implements ApplicantService {
@@ -15,18 +17,24 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Autowired
     private ApplicantDAO applicantDAO;
 
+
+    public ApplicantServiceImpl() {
+        TimeZone.setDefault(TimeZone.getTimeZone("EEST"));
+    }
+
     @Transactional
     public void addApplicant(Applicant applicant) {
         Integer id = applicant.getId();
+        Date currentDate = new Date();
 
         if(!applicantExist(id)){
-            applicant.setRegistrationDate(new Date());
+            applicant.setRegistrationDate(currentDate);
             applicantDAO.addApplicant(applicant);
             return;
         }
 
         if(applicant.getInvitationRecieved() && !isInvitationRecieved(id)){
-            applicant.setDateOfReceivingInvitation(new Date());
+            applicant.setDateOfReceivingInvitation(currentDate);
         }
         applicantDAO.updateApplicant(applicant);
     }

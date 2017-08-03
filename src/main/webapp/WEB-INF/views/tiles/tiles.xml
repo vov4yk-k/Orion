@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
@@ -16,12 +16,14 @@
             <add-attribute value="/resources/js/tether.min.js" />
             <add-attribute value="/resources/js/bootstrap.min.js" />
             <add-attribute value="/resources/js/ie10-viewport-bug-workaround.js" />
+            <add-attribute value="/resources/js/jquery.formstyler.min.js" />
         </put-list-attribute>
         <put-list-attribute name="stylesheets">
             <add-attribute value="/resources/css/bootstrap.min.css" />
             <add-attribute value="/resources/css/dashboard.css" />
             <add-attribute value="/resources/css/tables.css" />
             <add-attribute value="/resources/css/jquery.dataTables.min.css" />
+            <add-attribute value="/resources/css/jquery.formstyler.css" />
         </put-list-attribute>
     </definition>
 
