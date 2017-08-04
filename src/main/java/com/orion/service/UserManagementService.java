@@ -16,6 +16,7 @@ public interface UserManagementService {
     List<GroupMember> groupMemberList();
 
     User getUserById(String id);
+    User getUserByName(String name);
     GroupMember getGroupMemberById(Integer id);
 
     void addUser(User user);

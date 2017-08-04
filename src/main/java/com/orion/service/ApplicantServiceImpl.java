@@ -29,6 +29,8 @@ public class ApplicantServiceImpl implements ApplicantService {
 
         if(!applicantExist(id)){
             applicant.setRegistrationDate(currentDate);
+            if(applicant.getInvitationRecieved())
+                applicant.setDateOfReceivingInvitation(currentDate);
             applicantDAO.addApplicant(applicant);
             return;
         }
@@ -36,6 +38,7 @@ public class ApplicantServiceImpl implements ApplicantService {
         if(applicant.getInvitationRecieved() && !isInvitationRecieved(id)){
             applicant.setDateOfReceivingInvitation(currentDate);
         }
+
         applicantDAO.updateApplicant(applicant);
     }
 

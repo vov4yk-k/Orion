@@ -36,7 +36,12 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Override
     public User getUserById(String id) {
-        return null;
+        return userDAO.getUserByID(id);
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userDAO.getUserByName(name);
     }
 
     @Override

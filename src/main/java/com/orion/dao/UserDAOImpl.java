@@ -1,7 +1,9 @@
 package com.orion.dao;
 
 import com.orion.model.User;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,13 @@ public class UserDAOImpl implements UserDAO {
         User user = (User) sessionFactory.getCurrentSession().load(
                 User.class, id);
         return user ;
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        User user = (User) criteria.add(Restrictions.eq("name",name)).uniqueResult();
+        return user;
     }
 
     @Override

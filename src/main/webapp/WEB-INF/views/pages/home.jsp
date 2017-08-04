@@ -15,7 +15,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form:form method="post" action="add" commandName="applicant">
+                <form:form method="POST" action="postApplicant" commandName="applicant">
                     <div class="modal-body">
                         <fieldset class="form-group">
                             <label for="name">
@@ -86,7 +86,7 @@
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="modal" href="#applicantModalWindow">New item <span
+                    <a class="nav-link active" data-toggle="modal" href="#applicantModalWindow"><spring:message code="label.new"/><span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">

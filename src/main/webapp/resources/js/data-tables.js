@@ -9,7 +9,7 @@ $(document).ready(function() {
         function(){
             table.ajax.reload();
         },
-        300000
+        30000
     );
 
     $('#text-to-find').on( 'keyup', function () {
@@ -21,14 +21,15 @@ $(document).ready(function() {
     showApplicantOnClick(table);
 
     $('#applicantModalWindow').on('hidden.bs.modal', function () {
-        $(this)
-            .find("input,textarea,select")
-            .val('')
+        /*$(this)
+            .find("input,textarea")
+            .val(undefined)
             .end()
             .find("input[type=checkbox], input[type=radio]")
             .prop("checked", "")
             .end();
-        table.ajax.reload();
+        table.ajax.reload();*/
+        location.reload();
     });
 
     $('#invitationRecieved').click(function() {

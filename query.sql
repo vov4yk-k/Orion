@@ -61,10 +61,10 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`username`)
+  `language` varchar(10) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 LOCK TABLES `users` WRITE;
-INSERT INTO `users` VALUES ('admin@admin.ua','admin',1),('chief','chief',1),('guest','guest',1),('user','user',1);
+INSERT INTO `users` VALUES (1,'admin','admin',1,'en'),(2,'chief','chief',1,'en'),(3,'guest','guest',1,'en'),(4,'user','user',1,'en');
 UNLOCK TABLES;

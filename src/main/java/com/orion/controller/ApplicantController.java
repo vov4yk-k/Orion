@@ -1,11 +1,13 @@
 package com.orion.controller;
 
 
+import com.orion.model.User;
 import com.orion.service.ApplicantService;
 import com.orion.model.Applicant;
 import com.orion.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -15,11 +17,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -28,13 +32,20 @@ public class ApplicantController {
 
     @Autowired
     private ApplicantService applicantService;
+
     @Autowired
     private UserManagementService userManagementService;
+
+    @Autowired
+    private SessionLocaleResolver sessionLocaleResolver;
 
     @RequestMapping("/index")
     public String listApplicant(Map<String, Object> map) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
+
+        User user = userManagementService.getUserByName(currentPrincipalName);
+        sessionLocaleResolver.setDefaultLocale(user.getLocale());
 
         map.put("applicant", new Applicant());
         map.put("applicantList", applicantService.listApplicant());
@@ -58,7 +69,7 @@ public class ApplicantController {
         return "redirect:/index";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/postApplicant", method = RequestMethod.POST)
     public String addApplicant(@ModelAttribute("applicant") Applicant applicant, BindingResult result) {
         applicantService.addApplicant(applicant);
         return "redirect:/index";
