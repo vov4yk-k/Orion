@@ -132,3 +132,7 @@ function deleteApplicant() {
 function setRecruiter(recr){
     $('#recruiter').val(recr.value);
 }
+
+function setLanguage(lan){
+    $('#language').val(lan.options[lan.selectedIndex].id);
+}

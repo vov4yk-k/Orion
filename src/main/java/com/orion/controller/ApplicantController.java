@@ -101,8 +101,10 @@ public class ApplicantController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileTile(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userManagementService.getUserByName(authentication.getName());
         model.put("userName", authentication.getName());
-        model.put("user", userManagementService.getUserByName(authentication.getName()));
+        model.put("user", user);
+        model.put("languages",userManagementService.getLanguages(user));
         model.put("currentItem", "profile");
         return "profile";
     }
@@ -113,6 +115,7 @@ public class ApplicantController {
             model.addAttribute("user", user);
         } else {
             userManagementService.updateUser(user);
+            sessionLocaleResolver.setDefaultLocale(user.getLocale());
         }
         return "redirect:/profile";
     }

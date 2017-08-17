@@ -4,6 +4,7 @@ import com.orion.model.Group;
 import com.orion.model.GroupMember;
 import com.orion.model.User;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,4 +26,5 @@ public interface UserManagementService {
     void deleteUser(String id);
     void deleteGroupMember(Integer id);
     void updateUser(User user);
+    HashMap<String,String> getLanguages(User user);
 }

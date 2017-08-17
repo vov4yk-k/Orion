@@ -8,7 +8,7 @@ import com.orion.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Vova on 28.07.2017.
@@ -18,6 +18,11 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Autowired
     private UserDAO userDAO;
+
+    private ArrayList<Locale> supportedLocales = new ArrayList<Locale>() {{
+        add(Locale.ENGLISH);
+        add(Locale.forLanguageTag("uk"));
+    }};
 
     @Override
     public List<User> userList() {
@@ -72,5 +77,16 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public void updateUser(User user) {
         userDAO.updateUser(user);
+    }
+
+    @Override
+    public HashMap<String, String> getLanguages(User user) {
+        LinkedHashMap<String, String> languages = new LinkedHashMap<>();
+        languages.put(user.getLanguage(),user.getLocale().getDisplayName());
+        List<User> users = userDAO.userList();
+        supportedLocales.forEach(currentLocale -> {
+            languages.put(currentLocale.getLanguage(),currentLocale.getDisplayName());
+        });
+        return languages;
     }
 }
