@@ -41,6 +41,7 @@ $(document).ready(function() {
             $('select').styler();
         });
     })(jQuery);
+
 } );
 
 function initApplicantsTable() {

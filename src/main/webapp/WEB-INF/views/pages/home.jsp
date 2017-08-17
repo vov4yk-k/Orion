@@ -21,25 +21,25 @@
                             <label for="name">
                                 <spring:message code="label.namecirilic"/>
                             </label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" maxlength="50" class="form-control" id="name" name="name">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="nameTranslit">
                                 <spring:message code="label.namelatin"/>
                             </label>
-                            <input type="text" class="form-control" id="nameTranslit" name="nameTranslit">
+                            <input type="text" maxlength="50" class="form-control" id="nameTranslit" name="nameTranslit">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="vacancy">
                                 <spring:message code="label.vacancy"/>
                             </label>
-                            <input type="text" class="form-control" id="vacancy" name="vacancy">
+                            <input type="text" maxlength="50" class="form-control" id="vacancy" name="vacancy">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="contact">
                                 <spring:message code="label.contact"/>
                             </label>
-                            <input type="text" class="form-control" id="contact" name="contact" >
+                            <input type="text" maxlength="50" class="form-control" id="contact" name="contact" >
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="recruiter">
@@ -59,7 +59,7 @@
                             <label for="comment">
                                 <spring:message code="label.commentary"/>
                             </label>
-                            <textarea class="form-control" id="comment" name="comment"></textarea>
+                            <textarea class="form-control" maxlength="100" id="comment" name="comment"></textarea>
                         </fieldset>
                         <div class="form-check">
                             <label for="invitationRecieved" class="form-check-label">

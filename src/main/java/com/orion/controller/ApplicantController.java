@@ -12,8 +12,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,7 +45,6 @@ public class ApplicantController {
     public String listApplicant(Map<String, Object> map) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-
         User user = userManagementService.getUserByName(currentPrincipalName);
         sessionLocaleResolver.setDefaultLocale(user.getLocale());
 
@@ -51,6 +52,7 @@ public class ApplicantController {
         map.put("applicantList", applicantService.listApplicant());
         map.put("userName", currentPrincipalName);
         map.put("recruiters", userManagementService.userList());
+        map.put("currentItem", "home");
 
         return "home";
     }
@@ -81,7 +83,6 @@ public class ApplicantController {
         return "redirect:/index";
     }
 
-
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -89,14 +90,30 @@ public class ApplicantController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String settingsTile(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.put("userName", authentication.getName());
+        model.put("currentItem", "settings");
         return "settings";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileTile(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.put("userName", authentication.getName());
+        model.put("user", userManagementService.getUserByName(authentication.getName()));
+        model.put("currentItem", "profile");
         return "profile";
+    }
+
+    @RequestMapping(value = "/prifileUpdate", method = RequestMethod.POST)
+    public String userUpdate(@ModelAttribute(value="user") @Validated User user, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("user", user);
+        } else {
+            userManagementService.updateUser(user);
+        }
+        return "redirect:/profile";
     }
 }

@@ -24,4 +24,5 @@ public interface UserManagementService {
 
     void deleteUser(String id);
     void deleteGroupMember(Integer id);
+    void updateUser(User user);
 }

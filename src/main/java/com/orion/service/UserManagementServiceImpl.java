@@ -68,4 +68,9 @@ public class UserManagementServiceImpl implements UserManagementService {
     public void deleteGroupMember(Integer id) {
 
     }
+
+    @Override
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
+    }
 }

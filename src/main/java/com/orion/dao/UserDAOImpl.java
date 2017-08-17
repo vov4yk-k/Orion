@@ -53,4 +53,10 @@ public class UserDAOImpl implements UserDAO {
             sessionFactory.getCurrentSession().delete(user);
         }
     }
+
+    @Override
+    public void updateUser(User user) {
+        sessionFactory.getCurrentSession().update(user);
+    }
+
 }

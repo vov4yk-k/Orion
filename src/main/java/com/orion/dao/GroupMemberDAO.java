@@ -1,6 +1,7 @@
 package com.orion.dao;
 
 import com.orion.model.GroupMember;
+import com.orion.model.User;
 
 import java.util.List;
 

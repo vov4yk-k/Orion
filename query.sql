@@ -12,7 +12,7 @@ CREATE TABLE `applicants` (
   VACANCY VARCHAR(50),
   INVITATIONRECIEVED boolean,
   DATEOFRECEIVINGINVITATION Date,
-  COMMENTARY VARCHAR(50),
+  COMMENTARY VARCHAR(100),
   CONTACT VARCHAR(50),
   RECRUITER VARCHAR(50)
 );
@@ -61,10 +61,10 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  `language` varchar(10) NOT NULL,
+  `language` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 LOCK TABLES `users` WRITE;
-INSERT INTO `users` VALUES (1,'admin','admin',1,'en'),(2,'chief','chief',1,'en'),(3,'guest','guest',1,'en'),(4,'user','user',1,'en');
+INSERT INTO `users` VALUES (1,'admin','admin',1,'en'),(2,'chief','chief',1,'en'),(3,'guest','guest',1,'en'),(4,'user','user',1,'uk');
 UNLOCK TABLES;
