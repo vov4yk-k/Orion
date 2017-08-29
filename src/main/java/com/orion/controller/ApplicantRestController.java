@@ -24,9 +24,6 @@ public class ApplicantRestController {
     @Autowired
     private ApplicantService applicantService;
 
-    @Autowired
-    private UserManagementService userManagementService;
-
     @RequestMapping(value="/findApplicant/{applicantId}", method = RequestMethod.GET)
     @ResponseBody
     public Applicant findApplicant(@PathVariable("applicantId") Integer applicantId){
@@ -34,8 +31,8 @@ public class ApplicantRestController {
         return applicant;
     }
 
-    @RequestMapping(path="/applicants", method = RequestMethod.GET)
-    public List<Applicant> getAllEmployees(){
+    @RequestMapping(path = "/applicants", method = RequestMethod.GET)
+    public List<Applicant> getAllApplicants(){
         return applicantService.listApplicant();
     }
 
@@ -45,8 +42,5 @@ public class ApplicantRestController {
         dateFormat.setTimeZone(TimeZone.getTimeZone("EEST"));
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
-    /*@RequestMapping(path="/users", method = RequestMethod.GET)
-    public List<User> getAllUsers(){
-        return userManagementService.userList();
-    }*/
+
 }

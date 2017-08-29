@@ -89,8 +89,16 @@ function initApplicantsTable() {
         "scrollX":        false,
         "responsive":     true,
         "paging":         false,
-        rowCallback: function ( row, data ) {
+        "rowCallback": function ( row, data ) {
             $('input.editor-active', row).prop('checked', data.invitationRecieved);
+            switch(data.status) {
+                case "DEPARTED":
+                    $(row).children().css( "background-color", "#BFD8D2" );
+                    break;
+                case "NOTDEPARTED":
+                    $(row).children().css( "background-color", "#FEDCD2" );
+                    break;
+            }
         }
     } );
 }
@@ -109,6 +117,7 @@ function showApplicantOnClick(table) {
                 }
                 $('#invitationRecieved').prop('checked',jsondata.invitationRecieved);
                 $('.jq-selectbox__select-text')[0].innerHTML = jsondata.recruiter;
+                $('.jq-selectbox__select-text')[1].innerHTML = $('#'+jsondata.status).val();
                 showApplicantDialog();
             }
         });
@@ -135,4 +144,12 @@ function setRecruiter(recr){
 
 function setLanguage(lan){
     $('#language').val(lan.options[lan.selectedIndex].id);
+}
+
+function setStatus (status){
+    $('#status').val(status.options[status.selectedIndex].id);
+}
+
+function setRecruiterFilter(recr){
+    $('#recruiterFilter').val(recr.value);
 }

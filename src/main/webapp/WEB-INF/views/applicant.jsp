@@ -185,7 +185,7 @@
 <!--<script src="/resources/js/jquery-3.1.1.slim.min.js"></script>-->
 <script src="/resources/js/jquery.min.js"></script>
 <script src="/resources/js/jquery.dataTables.min.js"></script>
-<script src="/resources/js/data-tables.js"></script>
+<script src="/resources/js/data-table-applicant.js"></script>
 
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="/resources/js/tether.min.js"></script>

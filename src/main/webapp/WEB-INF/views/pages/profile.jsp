@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <div class="col-sm-10 col-md-offset-3">
-                    <button type="submit" class="btn btn-primary"><spring:message code="label.save"/></button>
+                    <button type="submit" class="btn btn-primary" style="background-color:#666B85"><spring:message code="label.save"/></button>
                     <!--<a class="btn btn-default" href = "${pageContext.request.contextPath}/profile">Cancel</a>-->
                 </div>
             </div>

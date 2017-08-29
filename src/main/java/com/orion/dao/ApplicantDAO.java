@@ -1,6 +1,7 @@
 package com.orion.dao;
 
 import com.orion.model.Applicant;
+import com.orion.model.ApplicantFilter;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface ApplicantDAO {
     public void removeApplicant(Integer id);
 
     public List<Applicant> listApplicant();
+
+    public List<Applicant> filteredListApplicant(ApplicantFilter af);
 
     public Applicant getApplicantById(Integer id);
 

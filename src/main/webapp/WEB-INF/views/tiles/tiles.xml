@@ -12,7 +12,8 @@
         <put-list-attribute name="javascripts">
             <add-attribute value="/resources/js/jquery.min.js" />
             <add-attribute value="/resources/js/jquery.dataTables.min.js" />
-            <add-attribute value="/resources/js/data-tables.js" />
+            <add-attribute value="/resources/js/data-table-applicant.js" />
+            <add-attribute value="/resources/js/data-table-settings.js" />
             <add-attribute value="/resources/js/tether.min.js" />
             <add-attribute value="/resources/js/bootstrap.min.js" />
             <add-attribute value="/resources/js/ie10-viewport-bug-workaround.js" />

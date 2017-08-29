@@ -3,11 +3,7 @@ package com.orion.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -49,6 +45,10 @@ public class Applicant {
 
     @Column(name = "RECRUITER")
     private String recruiter;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS")
+    private ApplicantStatus status;
 
     public Integer getId() {
         return id;
@@ -130,4 +130,15 @@ public class Applicant {
         this.recruiter = recruiter;
     }
 
+    public boolean isInvitationRecieved() {
+        return invitationRecieved;
+    }
+
+    public ApplicantStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ApplicantStatus status) {
+        this.status = status;
+    }
 }

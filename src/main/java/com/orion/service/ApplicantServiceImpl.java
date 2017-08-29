@@ -2,12 +2,19 @@ package com.orion.service;
 
 import com.orion.dao.ApplicantDAO;
 import com.orion.model.Applicant;
+import com.orion.model.ApplicantFilter;
+import com.orion.model.ApplicantStatus;
+import com.orion.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -17,15 +24,29 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Autowired
     private ApplicantDAO applicantDAO;
 
+    @Autowired
+    private ApplicantFilter applicantFilter;
 
     public ApplicantServiceImpl() {
         TimeZone.setDefault(TimeZone.getTimeZone("EEST"));
+    }
+
+    public ApplicantFilter getApplicantFilter() {
+        return applicantFilter;
+    }
+
+    public void setApplicantFilter(ApplicantFilter applicantFilter) {
+        this.applicantFilter.fillFields(applicantFilter);
     }
 
     @Transactional
     public void addApplicant(Applicant applicant) {
         Integer id = applicant.getId();
         Date currentDate = new Date();
+
+        if(applicant.getStatus() == null){
+            applicant.setStatus(ApplicantStatus.NEW);
+        }
 
         if(!applicantExist(id)){
             applicant.setRegistrationDate(currentDate);
@@ -49,7 +70,11 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     @Transactional
     public List<Applicant> listApplicant() {
-        return applicantDAO.listApplicant();
+        if(applicantFilter.isActive()){
+            return applicantDAO.filteredListApplicant(applicantFilter);
+        }else {
+            return applicantDAO.listApplicant();
+        }
     }
 
     @Override
