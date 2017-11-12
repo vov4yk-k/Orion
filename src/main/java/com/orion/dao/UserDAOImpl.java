@@ -43,12 +43,12 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        //sessionFactory.getCurrentSession().save(user);
+        sessionFactory.getCurrentSession().persist(user);
     }
 
     @Override
-    public void deleteUser(String id) {
-        User user = getUserByID(id);
+    public void deleteUser(User user) {
         if (null != user) {
             sessionFactory.getCurrentSession().delete(user);
         }
@@ -56,7 +56,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void updateUser(User user) {
-        sessionFactory.getCurrentSession().update(user);
+        //sessionFactory.getCurrentSession().update(user);
+        sessionFactory.getCurrentSession().merge(user);
     }
 
 }

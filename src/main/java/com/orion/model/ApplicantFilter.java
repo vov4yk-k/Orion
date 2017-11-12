@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.HashMap;
  */
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class ApplicantFilter{
+public class ApplicantFilter implements Serializable {
 
     private boolean received;
     private boolean notReceived;
@@ -36,6 +37,7 @@ public class ApplicantFilter{
         this.registration1 = new Date();
         this.receiving0 = new Date(117,1,1);
         this.receiving1 = new Date();
+        
     }
 
     public ApplicantFilter() {

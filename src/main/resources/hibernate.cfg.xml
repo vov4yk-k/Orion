@@ -7,5 +7,7 @@
     <session-factory>
         <mapping class="com.orion.model.Applicant" />
         <mapping class="com.orion.model.User" />
+        <mapping class="com.orion.model.Group" />
+        <mapping class="com.orion.model.GroupMember" />
     </session-factory>
 </hibernate-configuration>

@@ -23,18 +23,22 @@ public class GroupMemberDAOImpl implements GroupMemberDAO {
 
     @Override
     public void addGroupMember(GroupMember groupMember) {
-        sessionFactory.getCurrentSession().save(groupMember);
+        sessionFactory.getCurrentSession().persist(groupMember);
     }
 
     @Override
-    public void deleteGroupMember(Integer id) {
-        GroupMember groupMember = getGroupMemberByID(id);
+    public void updateGroupMember(GroupMember groupMember) {
+        sessionFactory.getCurrentSession().merge(groupMember);
+    }
+
+    @Override
+    public void deleteGroupMember(GroupMember groupMember) {
         sessionFactory.getCurrentSession().delete(groupMember);
     }
 
     @Override
     public GroupMember getGroupMemberByID(Integer id) {
-        GroupMember groupMember = (GroupMember) sessionFactory.getCurrentSession().load(
+        GroupMember groupMember = (GroupMember) sessionFactory.getCurrentSession().get(
                 GroupMember.class, id);
         return groupMember;
     }

@@ -40,6 +40,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Transactional
+    @Override
     public void addApplicant(Applicant applicant) {
         Integer id = applicant.getId();
         Date currentDate = new Date();
@@ -64,11 +65,13 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Transactional
+    @Override
     public void removeApplicant(Integer id) {
         applicantDAO.removeApplicant(id);
     }
 
     @Transactional
+    @Override
     public List<Applicant> listApplicant() {
         if(applicantFilter.isActive()){
             return applicantDAO.filteredListApplicant(applicantFilter);

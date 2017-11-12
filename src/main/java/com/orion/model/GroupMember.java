@@ -19,5 +19,33 @@ public class GroupMember {
 
     @OneToOne(targetEntity = Group.class)
     @JoinColumn(name="group_id", referencedColumnName = "id")
-    private Group group_id;
+    private Group group;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public User getUsername() {
+        return username;
+    }
+
+    public void setUsername(User username) {
+        this.username = username;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public boolean newEntity(){
+        return id == null;
+    }
 }

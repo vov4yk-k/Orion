@@ -1,5 +1,7 @@
 package com.orion.service;
 
+import com.orion.dao.GroupDAO;
+import com.orion.dao.GroupMemberDAO;
 import com.orion.dao.UserDAO;
 import com.orion.dao.UserDAOImpl;
 import com.orion.model.Group;
@@ -7,6 +9,7 @@ import com.orion.model.GroupMember;
 import com.orion.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -19,24 +22,33 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private GroupMemberDAO groupMemberDAO;
+
+    @Autowired
+    private GroupDAO groupDAO;
+
     private ArrayList<Locale> supportedLocales = new ArrayList<Locale>() {{
         add(Locale.ENGLISH);
         add(Locale.forLanguageTag("uk"));
     }};
 
     @Override
+    @Transactional
     public List<User> userList() {
         return userDAO.userList();
     }
 
     @Override
+    @Transactional
     public List<Group> groupList() {
-        return null;
+        return groupDAO.listGroup();
     }
 
     @Override
+    @Transactional
     public List<GroupMember> groupMemberList() {
-        return null;
+        return groupMemberDAO.listGroupMember();
     }
 
     @Override
@@ -50,8 +62,9 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
+    @Transactional
     public GroupMember getGroupMemberById(Integer id) {
-        return null;
+        return groupMemberDAO.getGroupMemberByID(id);
     }
 
     @Override
@@ -60,8 +73,19 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
+    @Transactional
     public void addGroupMember(GroupMember groupMember) {
-
+        User user = groupMember.getUsername();
+        if(user.newEntity())
+            userDAO.addUser(user);
+        else{
+            userDAO.updateUser(user);
+        }
+        if(groupMember.newEntity()){
+            groupMemberDAO.addGroupMember(groupMember);
+        }else{
+            groupMemberDAO.updateGroupMember(groupMember);
+        }
     }
 
     @Override
@@ -70,8 +94,12 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
+    @Transactional
     public void deleteGroupMember(Integer id) {
-
+        GroupMember groupMember = getGroupMemberById(id);
+        User user = groupMember.getUsername();
+        groupMemberDAO.deleteGroupMember(groupMember);
+        userDAO.deleteUser(user);
     }
 
     @Override

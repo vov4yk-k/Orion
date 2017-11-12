@@ -16,12 +16,13 @@
     <meta name="author" content="">
 
     <link rel="icon" href="http://orionwork.eu/wp-content/uploads/2016/08/cropped-favicon-32x32.png">
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <title>Orion</title>
 
     <c:forEach var="css" items="${stylesheets}">
         <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
     </c:forEach>
+
 </head>
 <body>
 <header id="header">

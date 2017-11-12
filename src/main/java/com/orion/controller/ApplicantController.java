@@ -1,11 +1,8 @@
 package com.orion.controller;
 
 
-import com.orion.model.ApplicantFilter;
-import com.orion.model.ApplicantStatus;
-import com.orion.model.User;
+import com.orion.model.*;
 import com.orion.service.ApplicantService;
-import com.orion.model.Applicant;
 import com.orion.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -97,8 +94,14 @@ public class ApplicantController {
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String settingsTile(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userManagementService.getUserByName(authentication.getName());
+        GroupMember gm = new GroupMember();
+        gm.setUsername(user);
         model.put("userName", authentication.getName());
+        model.put("languages",userManagementService.getLanguages(user));
         model.put("currentItem", "settings");
+        model.put("groupMember", gm);
+        model.put("groups", userManagementService.groupList());
         return "settings";
     }
 
@@ -113,7 +116,7 @@ public class ApplicantController {
         return "profile";
     }
 
-    @RequestMapping(value = "/prifileUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/profileUpdate", method = RequestMethod.POST)
     public String userUpdate(@ModelAttribute(value="user") @Validated User user, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             model.addAttribute("user", user);
@@ -145,4 +148,5 @@ public class ApplicantController {
         applicantService.setApplicantFilter(new ApplicantFilter(userManagementService));
         return "redirect:/index";
     }
+
 }

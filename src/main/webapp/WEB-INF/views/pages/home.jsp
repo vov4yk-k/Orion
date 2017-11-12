@@ -1,6 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8" language="java" %>
 <div class="container-fluid">
 
@@ -90,11 +92,13 @@
                                style="display: none">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="deleteApplicant(this)"><spring:message
-                                code="label.delete"/></button>
-                        <button type="submit" class="btn btn-primary"><spring:message code="label.save"/></button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:message
-                                code="label.close"/></button>
+                        <sec:authorize access="hasAnyRole('ADMIN', 'USER')">
+                            <button type="button" class="btn btn-danger" onclick="deleteApplicant(this)"><spring:message
+                                    code="label.delete"/></button>
+                            <button type="submit" class="btn btn-primary"><spring:message code="label.save"/></button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:message
+                                    code="label.close"/></button>
+                        </sec:authorize>
                     </div>
                 </form:form>
             </div>
@@ -103,26 +107,29 @@
 
     <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="modal" href="#applicantModalWindow"><spring:message
-                            code="label.newapplicant"/><span
-                            class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-            <ul class="nav nav-pills flex-column">
-            </ul>
 
+            <sec:authorize access="hasAnyRole('ADMIN', 'USER')">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="modal" href="#applicantModalWindow"><spring:message
+                                code="label.newapplicant"/><span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills flex-column">
+                </ul>
+            </sec:authorize>
             <div class="container">
                 <form:form role="form" class="form-horizontal"
                            action="${pageContext.request.contextPath}/setApplicantFilter"
                            method="POST" modelAttribute="applicantFilter" style=" width: 100%; margin: 0 auto;">
                     <div class="form-group">
-                        <label class="col-sm-10" for="received"><spring:message code="label.invitationrecieved"/>:</label>
+                        <label class="col-sm-10" for="received"><spring:message
+                                code="label.invitationrecieved"/>:</label>
                         <div class="col-sm-10">
-                            <label  for="received"><spring:message code="label.yes"/></label>
+                            <label for="received"><spring:message code="label.yes"/></label>
                             <form:checkbox class="col-sm-1" id="received" path="received" value="${received}"/>
-                            <label  for="received"><spring:message code="label.no"/></label>
+                            <label for="received"><spring:message code="label.no"/></label>
                             <form:checkbox class="col-sm-1" id="notReceived" path="notReceived" value="${notReceived}"/>
                         </div>
                     </div>
@@ -150,18 +157,23 @@
                         </label>
                         <c:forEach items="${applicantFilter.getRecruitersFilter()}" var="recruiter">
                             <div class="col-sm-10" id="${recruiter.key}">
-                                <input type="checkbox" path="recruitersFilter" class="col-sm-1" id="${recruiter.key}" value="${recruiter.value}" name="${recruiter.key}" <c:if test="${recruiter.value}">checked</c:if>/>
-                                <form:label path="recruitersFilter" value="${recruiter.value}" name="${recruiter.key}">${recruiter.key}</form:label>
+                                <input type="checkbox" path="recruitersFilter" class="col-sm-1" id="${recruiter.key}"
+                                       value="${recruiter.value}" name="${recruiter.key}"
+                                       <c:if test="${recruiter.value}">checked</c:if>/>
+                                <form:label path="recruitersFilter" value="${recruiter.value}"
+                                            name="${recruiter.key}">${recruiter.key}</form:label>
                             </div>
                         </c:forEach>
                     </div>
                     <form:checkbox id="active" path="active"
-                                   value="true" checked="checked" style="display: none" />
+                                   value="true" checked="checked" style="display: none"/>
                     <div class="form-group">
                         <div class="col-sm-10 col-md-offset-3">
-                            <button type="submit" class="btn btn-primary" style="background-color:#666B85"><spring:message
-                                    code="label.save"/></button>
-                            <a class="btn btn-default" href = "${pageContext.request.contextPath}/clearApplicantFilter"><spring:message
+                            <button type="submit" class="btn btn-primary" style="background-color:#666B85">
+                                <spring:message
+                                        code="label.save"/></button>
+                            <a class="btn btn-default"
+                               href="${pageContext.request.contextPath}/clearApplicantFilter"><spring:message
                                     code="label.clear"/></a>
                         </div>
                     </div>
@@ -170,6 +182,7 @@
         </nav>
 
         <main id="main" class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <!-- class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3"-->
             <table id="applicantsTable" class="display compact" cellspacing="0" width="100%" style="overflow-x:auto">
                 <thead>
                 <tr>

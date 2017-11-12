@@ -1,6 +1,7 @@
 package com.orion.model;
 
 import javax.persistence.*;
+import java.io.*;
 import java.util.Locale;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Locale;
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(name = "ID")
@@ -71,4 +72,7 @@ public class User {
         this.id = id;
     }
 
+    public boolean newEntity(){
+        return id == null;
+    }
 }

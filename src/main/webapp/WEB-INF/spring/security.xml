@@ -14,10 +14,13 @@
         <!--<intercept-url pattern="/**" requires-channel="https"/>-->
         <intercept-url pattern="/" access="isFullyAuthenticated() or isAnonymous()"/>
         <intercept-url pattern="/login.jsp*" access="isFullyAuthenticated() or isAnonymous()"/>
-        <intercept-url pattern="/index" access="hasRole('ADMIN') or hasRole('USER') or hasRole('GUEST')"/>
         <intercept-url pattern="/logout*" access="isFullyAuthenticated() or isAnonymous()"/>
-        <intercept-url pattern="/**" access="hasRole('USER')"/>
-        <intercept-url pattern="/postApplicant" access="hasRole('ADMIN') or hasRole('USER')"/>
+        <intercept-url pattern="/index" access="hasRole('ADMIN') or hasRole('USER') or hasRole('GUEST')"/>
+        <intercept-url pattern="/applicants" access="hasRole('ADMIN') or hasRole('USER') or hasRole('GUEST')"/>
+        <intercept-url pattern="/setApplicantFilter" access="hasRole('ADMIN') or hasRole('USER') or hasRole('GUEST')"/>
+        <intercept-url pattern="/clearApplicantFilter" access="hasRole('ADMIN') or hasRole('USER') or hasRole('GUEST')"/>
+        <intercept-url pattern="/settings" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/**" access="hasRole('ADMIN') or hasRole('USER')"/>
 
         <form-login
                 login-page="/login.jsp"

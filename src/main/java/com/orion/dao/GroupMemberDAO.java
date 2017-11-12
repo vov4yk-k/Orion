@@ -11,6 +11,7 @@ import java.util.List;
 public interface GroupMemberDAO {
     public List<GroupMember> listGroupMember();
     public void addGroupMember(GroupMember groupMember);
-    public void deleteGroupMember(Integer id);
+    public void updateGroupMember(GroupMember groupMember);
+    public void deleteGroupMember(GroupMember groupMember);
     public GroupMember getGroupMemberByID(Integer id);
 }
